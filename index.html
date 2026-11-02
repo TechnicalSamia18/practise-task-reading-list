@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reading list · Shelf</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Only shown when a demo setting is active in the address bar. -->
+  <div id="demo-banner" class="demo-banner" hidden>
+    <p><span id="demo-banner-text"></span> <a href="./">Back to normal</a></p>
+  </div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <span class="brand-name">Shelf</span>
+          <span class="brand-tag">A personal reading list</span>
+        </span>
+      </div>
+      <nav aria-label="Main">
+        <ul class="nav-list">
+          <li><a href="#add-section">Add a book</a></li>
+          <li><a href="#list-section">Your books</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <header class="page-header">
+      <h1>Reading list</h1>
+      <p class="lede">Keep track of books you want to read. Your list is saved in this browser.</p>
+    </header>
+
+    <section id="add-section" class="card add-card" aria-labelledby="add-heading">
+      <h2 id="add-heading">Add a book</h2>
+      <form id="add-form" novalidate>
+        <!-- Disabled until the list has loaded. -->
+        <fieldset id="add-fieldset" disabled>
+          <legend class="visually-hidden">Book details</legend>
+          <div class="fields">
+            <div class="field">
+              <label for="title">Title</label>
+              <input id="title" name="title" type="text" autocomplete="off"
+                     maxlength="200" aria-required="true" aria-describedby="title-error">
+              <p id="title-error" class="field-error" hidden></p>
+            </div>
+            <div class="field">
+              <label for="author">Author <span class="optional">(optional)</span></label>
+              <input id="author" name="author" type="text" autocomplete="off" maxlength="120">
+            </div>
+          </div>
+          <button type="submit" id="add-button" class="btn btn-primary">Add to list</button>
+        </fieldset>
+        <p id="form-error" class="inline-error" role="alert"></p>
+      </form>
+    </section>
+
+    <section id="list-section" class="list-section" aria-labelledby="list-heading" aria-busy="true">
+      <div class="list-header">
+        <h2 id="list-heading" tabindex="-1">Your books</h2>
+        <p id="count" class="count"></p>
+      </div>
+      <p id="list-error" class="inline-error" role="alert"></p>
+      <div id="view">
+        <noscript>
+          <p class="state state-error">This reading list needs JavaScript. Turn it on in your browser settings and reload the page.</p>
+        </noscript>
+      </div>
+    </section>
+
+    <!-- Screen-reader announcements for state changes. -->
+    <p id="status" class="visually-hidden" role="status"></p>
+
+    <footer class="demo">
+      <details>
+        <summary>For reviewers: see each state</summary>
+        <p>Each link reloads the page with a setting in the address. No code changes needed.</p>
+        <ul>
+          <li><a href="?delay=4000">Loading</a> – the list takes 4 seconds to load.</li>
+          <li><a href="?fail=load">Error</a> – the first load fails; “Try again” then succeeds.</li>
+          <li><a href="?reset">Empty</a> – clears your saved list, as for a new user.</li>
+          <li><a href="?fail=save">Save error</a> – adding or removing a book fails.</li>
+          <li><a href="?seed">Sample books</a> – adds three books to an empty list.</li>
+          <li><a href="./">Normal</a> – no demo settings.</li>
+        </ul>
+      </details>
+    </footer>
+  </main>
+</body>
+</html>
